@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container } from 'reactstrap'
 
 import InputData from './components/InputData'
@@ -8,6 +8,8 @@ import './App.css'
 const App = () => {
     const [tasks, setTasks] = useState([])
     const [tasksRemaining, setTasksRemaining] = useState(0)
+
+    console.log(tasks)
 
     useEffect(() => {
         setTasksRemaining(tasks.filter((task) => !task.completed).length)
@@ -30,6 +32,11 @@ const App = () => {
         setTasks(newTasks)
     }
 
+    const editTask = (index) => {
+        console.log('===> set todo => ', index)
+        setTasks(index)
+    }
+
     return (
         <Container>
             <InputData addTask={addTask} />
@@ -37,6 +44,7 @@ const App = () => {
             <TaskList
                 tasks={tasks}
                 removeTask={removeTask}
+                editTask={editTask}
                 completeTask={completeTask}
                 tasksRemaining={tasksRemaining}
             />
