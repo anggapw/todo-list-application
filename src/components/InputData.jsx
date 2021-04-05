@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap'
 
 const InputData = ({ addTask }) => {
@@ -6,10 +6,13 @@ const InputData = ({ addTask }) => {
     const [role, setRole] = useState('Office Boy')
 
     const handleForm = (e) => {
-        e.preventDefault()
-        if (!task) return
-        addTask(task, role)
-        setTask('')
+        if (!task) {
+            alert('Mohon lengkapi data')
+        } else {
+            e.preventDefault()
+            addTask(task, role)
+            setTask('')
+        }
     }
 
     return (
@@ -31,13 +34,7 @@ const InputData = ({ addTask }) => {
 
                         <FormGroup>
                             <Label for="exampleSelect">Role</Label>
-                            <Input
-                                type="select"
-                                name="select"
-                                id="exampleSelect"
-                                onChange={(e) => setRole(e.target.value)}
-                                value={role}
-                            >
+                            <Input type="select" name="select" id="exampleSelect" onChange={(e) => setRole(e.target.value)} value={role}>
                                 <option value="Office Boy">Office Boy</option>
                                 <option value="Security">Security</option>
                                 <option value="Driver">Driver</option>
